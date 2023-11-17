@@ -1,0 +1,38 @@
+<div class="main--container">
+    <h2>Logger</h2>
+    <div class="header--container">
+        <div class="left--header">
+            <button class="button has--error" (click)="selectErrorLogs()">Error</button>
+            <button class="button has--warning" (click)="selectWarningLogs()">Warning</button>
+            <button class="button has--success" (click)="selectSuccessLogs()">Success</button>
+            <button class="reload" (click)="resetLogs()"><img src="assets/icons/refresh2.svg" alt="" class="reload--data"></button>
+            <button class="export--excel" (click)="exportLogsData()">
+                <img src="assets/icons/excel-logo.svg" alt="" class="excel--icon">
+                <span>Export Data</span>
+            </button>
+        </div>
+        <div class="right--header">
+            <input class="search--bar" type="text" name="" id="" placeholder="Direct search by commit...">
+            <button class="search search--icon"><img src="assets/icons/search.svg" alt="" class="reload--data"></button>
+            <button class="filter"><img src="assets/icons/filter.svg" alt="" class="filter--icon"></button>
+        </div>       
+    </div>
+    <div class="table-container">
+        <table class="table">
+            <tr class="table--header">
+                <th *ngFor="let header of tableHeaders">{{ header }}</th>
+            </tr>
+            <tr *ngFor="let item of previewData">
+                <td class="xs justify-center">{{ item.id }}</td>
+                <td class="sm">{{ item.level }}</td>
+                <td class="lg">{{ item.message }}</td>
+                <td>{{ item.resourceId }}</td>
+                <td class="md">{{ item.timestamp }}</td>
+                <td>{{ item.traceId }}</td>
+                <td class="sm">{{ item.spanId }}</td>
+                <td class="sm">{{ item.commit }}</td>
+                <td class="md">{{ item.parentResourceId }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

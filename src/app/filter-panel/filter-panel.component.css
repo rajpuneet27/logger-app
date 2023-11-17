@@ -1,0 +1,12 @@
+.filter--container{
+    width: 800px;
+    padding: 20px;
+    border: 1px solid grey;
+}
+h4{
+    margin: 0;
+}
+
+hr{
+    margin: 0;
+}

@@ -1,0 +1,217 @@
+.main--container{
+    width: 85%;
+    margin: 5px auto;
+}
+
+.header--container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left--header{
+    display: flex;
+}
+.right--header{
+    display: flex;
+}
+
+.button{
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(82, 82, 82);
+    outline-style: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid rgb(185, 185, 185);
+}
+
+.button:hover{
+    background-color: rgb(240, 168, 61);
+    color: rgb(255, 255, 255);
+}
+
+.button.has--error{
+    /* border-radius: 5px 0 0 5px; */
+    border-right: none;
+}
+.button.has--warning{
+    border-radius: 0;
+}
+.button.has--success{
+    border-left: none;
+    /* border-radius: 0 5px 5px 0; */
+}
+
+button{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.reload{
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(82, 82, 82);
+    outline-style: none;
+    font-size: 12px;
+    margin-left: 10px;
+    padding: auto auto;
+    border: 1px solid rgb(185, 185, 185);
+}
+.reload:hover{
+    background-color: rgb(240, 168, 61);
+    color: rgb(255, 255, 255);
+}
+
+.export--excel{
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(82, 82, 82);
+    outline-style: none;
+    font-size: 12px;
+    margin-left: 10px;
+    padding: 0 1.2rem;
+    border: 1px solid rgb(185, 185, 185);
+}
+.export--excel span{
+    padding-left: 5px;
+}
+.export--excel:hover{
+    background-color: rgb(240, 168, 61);
+    color: rgb(255, 255, 255);
+}
+
+.filter{
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(82, 82, 82);
+    outline-style: none;
+    font-size: 12px;
+    margin-left: 10px;
+    border: 1px solid rgb(185, 185, 185);
+}
+
+
+.table-container {
+    max-height: 383px;
+    position: relative;
+    margin-top: 10px;
+    overflow-y: auto;
+}
+
+/* Custom scrollbar styles */
+.table-container::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .table-container::-webkit-scrollbar-thumb {
+    background-color: #808080;
+  }
+  
+  .table-container::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+  }
+
+table{
+    width: 100%;
+}
+
+table,
+tr,
+td {
+   border-collapse: collapse;
+   color: rgb(82, 82, 82);
+}
+
+th, td{
+  width: max-content;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th{
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    padding: 0.8rem;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: white;
+    text-transform: uppercase;
+}
+
+tr:nth-child(2n+0) {
+    background: #f3f3f383;
+  }
+
+td{
+    border: 1px dashed rgba(0, 0, 0, 0.20);
+    padding: 0.45rem 0.8rem;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.table--header{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border: 1px solid #777;
+}
+  
+.border--header{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+  
+.xs{
+    width: 25px;
+}
+  
+.sm{
+    width: 70px;
+}
+  
+.md{
+    width: 150px;
+}
+  
+.lg{
+    width: 250px;
+}
+  
+.xl{
+    width: 350px;
+}
+  
+.justify-center{
+    text-align: center;
+}
+
+.search--bar{
+    margin-left: 10px;
+    width: 300px;
+    outline: none;
+    border: none;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(190, 190, 190, 0.988)
+}
+
+.search{
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(82, 82, 82);
+    outline-style: none;
+    font-size: 12px;
+    border: none;
+    border-bottom: 1px solid rgb(185, 185, 185);
+
+}
+
+.selectedButton {
+    background-color: rgb(240, 168, 61) !important;
+    color: rgb(255, 255, 255) !important;
+}
