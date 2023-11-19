@@ -11,34 +11,22 @@ import { AppService } from '../app.service';
 export class LoggerComponent implements OnInit {
   previewData: any[] = []
   tableData: any[] = []
+  selectedFilter: string = 'level';
+  value: string = '';
+  filterBox: boolean= false
+  searchKeyword: string = ''
 
   constructor(private appService: AppService) { }
   ngOnInit(): void {
     this.appService.getLogsData().subscribe(data => {
-      console.log(data.log)
-      this.tableData = data.log;
+      console.log(data)
+      this.tableData = data;
       this.previewData = this.tableData
     })
-    
   }
 
 
   tableHeaders = ['Id','Level','Message','Resource ID','Timestamp','Trace ID','Span ID','Commit','Parent Resource ID'];
-
-  // tableData = [
-  //   {id: 1,level: 'error',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-456',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 2,level: 'success',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-12T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-459',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 3,level: 'warning',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-11T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-458',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 4,level: 'error',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-09T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-457',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 5,level: 'success',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-450',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 6,level: 'warning',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-451',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 7,level: 'error',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-452',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 8,level: 'success',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-453',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 9,level: 'warning',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-456',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 10,level: 'error',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-456',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 11,level: 'success',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-456',commit: '5e5342f',parentResourceId: 'server-0987'},
-  //   {id: 12,level: 'warning',message: 'Failed to connect to DB',resourceId: 'server-1234',timestamp: '2023-09-15T08:00:00Z',traceId: 'abc-xyz-123',spanId: 'span-456',commit: '5e5342f',parentResourceId: 'server-0987'},
-  // ];
 
   private padZero(value: number): string {
     return value < 10 ? '0' + value : '' + value;
@@ -68,33 +56,55 @@ export class LoggerComponent implements OnInit {
 
   selectErrorLogs(): void{
     this.previewData = []
-    this.tableData.forEach(x => {
-      if(x.level == 'error'){
-        this.previewData.push(x)
-      }
+    this.value = 'error'
+    this.appService.getSearchDataService(this.value, 'level').subscribe(data => {
+      this.previewData = data.logs;
     })
   }
 
   selectSuccessLogs(): void{
     this.previewData = []
-    this.tableData.forEach(x => {
-      if(x.level == 'success'){
-        this.previewData.push(x)
-      }
+    this.value = 'success'
+    this.appService.getSearchDataService(this.value, 'level').subscribe(data => {
+      this.previewData = data.logs;
     })
   }
 
   selectWarningLogs(): void{
     this.previewData = []
-    this.tableData.forEach(x => {
-      if(x.level == 'warning'){
-        this.previewData.push(x)
-      }
+    this.value = 'warning'
+    this.appService.getSearchDataService(this.value, 'level').subscribe(data => {
+      this.previewData = data.logs;
     })
   }
 
   resetLogs(): void{
-    this.previewData = this.tableData
+    this.previewData = []
+    this.appService.getLogsData().subscribe(data => {
+      console.log(data)
+      this.tableData = data;
+      this.previewData = this.tableData
+    })
+  }
+
+  openFilter(){
+    this.filterBox = !this.filterBox;
+  }
+
+  onSubmit() {
+    this.filterBox = false
+    console.log('Selected Filter:', this.selectedFilter);
+  }
+
+  performSearch() {
+    if (this.searchKeyword.trim() !== '') {
+      console.log("132456")
+      this.previewData = []
+      this.value = this.searchKeyword
+      this.appService.getSearchDataService(this.value, this.selectedFilter).subscribe(data => {
+        this.previewData = data.logs;
+      })
+    }
   }
 
 }

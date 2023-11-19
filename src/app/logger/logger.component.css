@@ -9,6 +9,29 @@
     justify-content: space-between;
 }
 
+form{
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #80808086;
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 12px;
+    position: fixed;
+    top: 115px;
+    right: 7.5%;
+}
+
+input.radio{
+    margin: 3px 10px 0 0;
+}
+.submit-btn{
+    margin: 10px 0;
+    display: flex;
+}
+label{
+    margin-bottom: 1px ;
+}
+
 .left--header{
     display: flex;
 }
@@ -95,7 +118,7 @@ button{
 
 
 .table-container {
-    max-height: 383px;
+    max-height: 516px;
     position: relative;
     margin-top: 10px;
     overflow-y: auto;

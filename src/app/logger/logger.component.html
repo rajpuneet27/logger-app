@@ -12,9 +12,9 @@
             </button>
         </div>
         <div class="right--header">
-            <input class="search--bar" type="text" name="" id="" placeholder="Direct search by commit...">
-            <button class="search search--icon"><img src="assets/icons/search.svg" alt="" class="reload--data"></button>
-            <button class="filter"><img src="assets/icons/filter.svg" alt="" class="filter--icon"></button>
+            <input class="search--bar" type="text" [(ngModel)]="searchKeyword" placeholder="Direct search on filtered column...">
+            <button class="search search--icon" (click)="performSearch()"><img src="assets/icons/search.svg" alt="" class="reload--data"></button>
+            <button (click)="openFilter()" class="filter"><img src="assets/icons/filter.svg" alt="" class="filter--icon"></button>
         </div>       
     </div>
     <div class="table-container">
@@ -23,7 +23,7 @@
                 <th *ngFor="let header of tableHeaders">{{ header }}</th>
             </tr>
             <tr *ngFor="let item of previewData">
-                <td class="md">{{ item.id }}</td>
+                <td class="md">{{ item._id }}</td>
                 <td class="sm">{{ item.level }}</td>
                 <td class="lg">{{ item.message }}</td>
                 <td>{{ item.resourceId }}</td>
@@ -31,8 +31,26 @@
                 <td>{{ item.traceId }}</td>
                 <td class="sm">{{ item.spanId }}</td>
                 <td class="sm">{{ item.commit }}</td>
-                <td class="md">{{ item.parentResourceId }}</td>
+                <td class="md">{{ item.metadata.parentResourceId }}</td>
             </tr>
         </table>
     </div>
 </div>
+
+<form *ngIf="filterBox" (ngSubmit)="onSubmit()">
+    <p>Filter:</p>
+    <input class="radio" type="radio" id="message" name="filter" value="message" [(ngModel)]="selectedFilter">
+    <label class="radio" for="message">Message</label><br>
+    <input class="radio" type="radio" id="traceId" name="filter" value="traceId" [(ngModel)]="selectedFilter">
+    <label class="radio" for="traceId">Trace Id</label><br>
+    <input class="radio" type="radio" id="resourceId" name="filter" value="resourceId" [(ngModel)]="selectedFilter">
+    <label class="radio" for="resourceId">Resource Id</label><br>
+    <input class="radio" type="radio" id="spanId" name="filter" value="spanId" [(ngModel)]="selectedFilter">
+    <label class="radio" for="spanId">Span Id</label><br>
+    <input class="radio" type="radio" id="commit" name="filter" value="commit" [(ngModel)]="selectedFilter">
+    <label class="radio" for="commit">Commit</label><br>
+    <input class="radio" type="radio" id="parentResourceId" name="filter" value="parentResourceId" [(ngModel)]="selectedFilter">
+    <label class="radio" for="parentResourceId">Parent Resource Id</label><br>
+    <button class="button submit-btn" type="submit">Submit</button>
+  </form>
+  

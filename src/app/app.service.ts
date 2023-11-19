@@ -13,4 +13,9 @@ export class AppService {
     var url = 'http://localhost:3000/api/logs';
     return this.http.get<any>(url)
   }
+
+  getSearchDataService(keyword: string, key: string): Observable<any> {
+    const url = `http://localhost:3000/api/search?keyword=${keyword}&key=${key}`;
+    return this.http.get<any>(url);
+  }
 }
