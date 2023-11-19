@@ -2,9 +2,9 @@
     <h2>Logger</h2>
     <div class="header--container">
         <div class="left--header">
-            <button class="button has--error" (click)="selectErrorLogs()">Error</button>
-            <button class="button has--warning" (click)="selectWarningLogs()">Warning</button>
-            <button class="button has--success" (click)="selectSuccessLogs()">Success</button>
+            <button class="button has--error" (click)="selectErrorLogs()">Has Error</button>
+            <button class="button has--warning" (click)="selectWarningLogs()">Has Warning</button>
+            <button class="button has--success" (click)="selectSuccessLogs()">Has Success</button>
             <button class="reload" (click)="resetLogs()"><img src="assets/icons/refresh2.svg" alt="" class="reload--data"></button>
             <button class="export--excel" (click)="exportLogsData()">
                 <img src="assets/icons/excel-logo.svg" alt="" class="excel--icon">
@@ -23,7 +23,7 @@
                 <th *ngFor="let header of tableHeaders">{{ header }}</th>
             </tr>
             <tr *ngFor="let item of previewData">
-                <td class="xs justify-center">{{ item.id }}</td>
+                <td class="md">{{ item.id }}</td>
                 <td class="sm">{{ item.level }}</td>
                 <td class="lg">{{ item.message }}</td>
                 <td>{{ item.resourceId }}</td>
